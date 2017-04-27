@@ -14,7 +14,7 @@ def get_players(sfilename):
     return players
 
 """sort_players takes the Ordered Dictionay value from get_players as an argument. It will loop through each player
-and check to see if the field 'Soccor Experience' has the value of YES or NO. If it is YES it will add that player to
+and check to see if the field 'Soccer Experience' has the value of YES or NO. If it is YES it will add that player to
 the has_exp list, if NO it will add that player to the no_exp list and return both lists as a tuple. 
 """
 def sort_players(players):
@@ -29,8 +29,8 @@ def sort_players(players):
 
 """
 build_team takes two values, a_players and b_players. It creates varibles which is the first three
-items in a_players and concatinates the first three items in b_players to create a new list. It will return
-each varible as a tuple.
+items in a_players and concatenates the first three items in b_players to create a new list. It will return
+each variable as a tuple.
 """
 def build_team(a_players, b_players):
     team1 = a_players[0:3] + b_players[0:3]
@@ -73,7 +73,7 @@ def team_rosters(t1, t2, t3):
         file.write('\n \n \n')
 """
 welcome_letters take three arguments which will be each team. It recombines each team into a single list 
-which is the leauge_roster. It then loops through each player in the roster assigining vairbles to the players
+which is the league_roster. It then loops through each player in the roster assigning variables to the players
 first and last name to be used to create new txt files for each player. 
 """
 def welcome_letters(t1, t2, t3):
