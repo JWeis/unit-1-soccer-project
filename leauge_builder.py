@@ -1,5 +1,9 @@
 import csv
 
+
+"""get_players takes in a single argument which needs to be a csv file. It parses through the file columns and 
+adds each item, in this case players, to the players list as a Ordered Dictionary and returns the players value
+"""
 def get_players(sfilename):
     players = []
     with open(sfilename, newline='') as csvfile:
@@ -9,6 +13,10 @@ def get_players(sfilename):
             players.append(column)
     return players
 
+"""sort_players takes the Ordered Dictionay value from get_players as an argument. It will loop through each player
+and check to see if the field 'Soccor Experience' has the value of YES or NO. If it is YES it will add that player to
+the has_exp list, if NO it will add that player to the no_exp list and return both lists as a tuple. 
+"""
 def sort_players(players):
     has_exp = []
     no_exp = []
@@ -19,18 +27,25 @@ def sort_players(players):
             no_exp.append(player)
     return has_exp, no_exp
 
-
+"""
+build_team takes two values, a_players and b_players. It creates varibles which is the first three
+items in a_players and concatinates the first three items in b_players to create a new list. It will return
+each varible as a tuple.
+"""
 def build_team(a_players, b_players):
     team1 = a_players[0:3] + b_players[0:3]
     team2 = a_players[3:6] + b_players[3:6]
     team3 = a_players[6:] + b_players[6:]
     return team1, team2, team3
 
-
-def write_team(t1, t2, t3):
+"""
+write_team takes three arguments which in this case will be eact team created by build_team. It then 
+creates a file called teams.txt and writes out to the file the team name as well as the roster for each team
+"""
+def team_rosters(t1, t2, t3):
     with open('teams.txt', 'w') as file:
         file.write("Dragons\n")
-        for i in range(0,6):
+        for i in range(0,len(t1)):
             file.write(t1[i]['Name'])
             file.write(' , ')
             file.write(t1[i]['Soccer Experience'])
@@ -39,7 +54,7 @@ def write_team(t1, t2, t3):
             file.write('\n')
         file.write('\n\n\n')
         file.write("Sharks\n")
-        for i in range(0, 6):
+        for i in range(0, len(t2)):
             file.write(t2[i]['Name'])
             file.write(' , ')
             file.write(t2[i]['Soccer Experience'])
@@ -48,7 +63,7 @@ def write_team(t1, t2, t3):
             file.write('\n')
         file.write('\n \n \n')
         file.write("Raptors\n")
-        for i in range(0, 6):
+        for i in range(0, len(t3)):
             file.write(t3[i]['Name'])
             file.write(' , ')
             file.write(t3[i]['Soccer Experience'])
@@ -56,7 +71,11 @@ def write_team(t1, t2, t3):
             file.write(t3[i]['Guardian Name(s)'])
             file.write('\n')
         file.write('\n \n \n')
-
+"""
+welcome_letters take three arguments which will be each team. It recombines each team into a single list 
+which is the leauge_roster. It then loops through each player in the roster assigining vairbles to the players
+first and last name to be used to create new txt files for each player. 
+"""
 def welcome_letters(t1, t2, t3):
     leauge_roster = t1 + t2 + t3
     for i in range(0,len(leauge_roster)):
@@ -84,14 +103,14 @@ def welcome_letters(t1, t2, t3):
             file.write("\n\n")
             file.write("Good luck and Have Fun!")
 
-
-
-
-
-
 if __name__ == '__main__':
+    #assigns varible player to the value of get_players with the 'soccer_players.csv' file
     players = get_players("soccer_players.csv")
+    #unpacks returned value of sorted_players called with players argument in to experts and beginners varibles
     experts, beginners = sort_players(players)
+    #unpacks returned value of build_team called with experts and beginners as aruments to varibles of team names
     dragons, sharks, raptors = build_team(experts, beginners)
-    write_team(dragons, sharks, raptors)
+    #creates the teams.txt file with each team roster written to the file
+    team_rosters(dragons, sharks, raptors)
+    #creates the welcome letter txt file for each player in their respected teams
     welcome_letters(dragons, sharks, raptors)
