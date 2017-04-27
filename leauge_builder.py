@@ -16,8 +16,6 @@ def get_players(sfilename):
 
 experts, beginners = get_players("soccer_players.csv")
 
-#print(experts[0:3])
-
 def build_team(a_players, b_players):
     team1 = a_players[0:3] + b_players[0:3]
     team2 = a_players[3:6] + b_players[3:6]
@@ -26,15 +24,9 @@ def build_team(a_players, b_players):
 
 dragons, sharks, raptors = build_team(experts, beginners)
 
-#print(dragons[1]['Name'],dragons[1]['Height (inches)'])
-#print(dragons[1]['Height (inches)'])
-#print(dragons[1]['Soccer Experience'])
-#print(dragons[1]['Guardian Name(s)'])
-
 def write_team(t1, t2, t3):
     with open('teams.txt', 'a') as file:
-        file.write("Dragons!!\n")
-        file.write("_______________________\n")
+        file.write("Dragons\n")
         for i in range(0,6):
             file.write(t1[i]['Name'])
             file.write(' , ')
@@ -43,8 +35,7 @@ def write_team(t1, t2, t3):
             file.write(t1[i]['Guardian Name(s)'])
             file.write('\n')
         file.write('\n\n\n')
-        file.write("Sharks!!\n")
-        file.write("_______________________\n")
+        file.write("Sharks\n")
         for i in range(0, 6):
             file.write(t2[i]['Name'])
             file.write(' , ')
@@ -53,8 +44,7 @@ def write_team(t1, t2, t3):
             file.write(t2[i]['Guardian Name(s)'])
             file.write('\n')
         file.write('\n \n \n')
-        file.write("Raptors!!\n")
-        file.write("_______________________\n")
+        file.write("Raptors\n")
         for i in range(0, 6):
             file.write(t3[i]['Name'])
             file.write(' , ')
@@ -64,5 +54,10 @@ def write_team(t1, t2, t3):
             file.write('\n')
         file.write('\n \n \n')
 
-if __name__ == '__main__':
-    write_team(dragons, sharks, raptors)
+def welcome_letters(t1, t2, t3):
+    a = dragons[1]["Name"][:].split()
+    with open(a[0] + "_" + a[1])
+
+
+#if __name__ == '__main__':
+    #write_team(dragons, sharks, raptors)
